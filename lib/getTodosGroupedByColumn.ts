@@ -31,7 +31,7 @@ export const getTodosGroupedByColumn = async () => {
   console.log(columns);
 
   // if columns doesn't have inporgress, todo and done , add them with empty todos
-  const columnTypes: TypedColumn[] = ["inprogress", "todo", "done"];
+  const columnTypes: TypedColumn[] = ["todo", "inprogress", "done"];
   columnTypes.forEach((columnType) => {
     if (!columns.get(columnType)) {
       columns.set(columnType, {
