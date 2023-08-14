@@ -9,7 +9,7 @@ export const getTodosGroupedByColumn = async () => {
   const todos = data.documents;
   console.log(todos);
 
-  const columns = todos.reduce((acc, todo) => {
+  const columns = todos.reduce((acc: Map<TypedColumn, Column>, todo: Todo) => {
     if (!acc.get(todo.status)) {
       acc.set(todo.status, {
         id: todo.status,
@@ -23,7 +23,7 @@ export const getTodosGroupedByColumn = async () => {
       title: todo.title,
       status: todo.status,
       // get the image if it exists on the todo
-      ...(todo.image && { image: JSON.parse(todo.image) }),
+      ...(todo.image && { image: JSON.parse(todo.image.toString()) }),
     });
 
     return acc;
@@ -43,8 +43,13 @@ export const getTodosGroupedByColumn = async () => {
   console.log(columns);
 
   // sort columns by columnTypes
-  const sortedColumns = new Map(
-    Array.from(columns.entries()).sort(
+  // const sortedColumns = new Map(
+  //   Array.from(columns.entries()).sort(
+  //     (a, b) => columnTypes.indexOf(a[0]) - columnTypes.indexOf(b[0])
+  //   )
+  // );
+  const sortedColumns = new Map<TypedColumn, Column>(
+    [...columns.entries()].sort(
       (a, b) => columnTypes.indexOf(a[0]) - columnTypes.indexOf(b[0])
     )
   );
