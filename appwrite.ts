@@ -1,12 +1,5 @@
-// import { Client } from "./node_modules/appwrite/types/client";
-// import { ID } from "./node_modules/appwrite/types/id";
-// import { Databases } from "./node_modules/appwrite/types/index";
-// import { Storage } from "./node_modules/appwrite/types/index";
-// import { Account } from "./node_modules/appwrite/types/index";
-
 import { Client, Account, ID, Databases, Storage } from "appwrite";
 
-// make above in one line
 const client = new Client();
 
 client
